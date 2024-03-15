@@ -2,6 +2,7 @@ package com.quiz.quizservice.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,7 @@ import com.quiz.quizservice.service.QuizService;
 
 @RestController
 @RequestMapping("/quiz")
-
+@CrossOrigin(origins = "http://localhost:3000")
 public class QuizController {
    private QuizService quizService;
 
