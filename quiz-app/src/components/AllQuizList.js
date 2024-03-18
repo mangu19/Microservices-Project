@@ -7,6 +7,9 @@ export default function AllQuizList() {
 
     useEffect(() => {
         fetchQuizList()
+        for(let i=0;i<allQuiz.length;i++){
+            console.log(allQuiz[i].title)
+        }
     }, [])
 
     const fetchQuizList = () => {
@@ -32,7 +35,14 @@ export default function AllQuizList() {
                             <div class="card-body">
                                 <h5 class="card-title">{quiz.title}</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary">Questions</h6>
-                                <p class="card-text">Que1</p>
+                                {quiz.questions.map((question,key1)=>{
+                                    return(
+                                        <p class="card-text" key={key1}>{question.question}</p>
+                                    )
+                                }
+
+                                )}
+                                
                               
                             </div>
                         </div>

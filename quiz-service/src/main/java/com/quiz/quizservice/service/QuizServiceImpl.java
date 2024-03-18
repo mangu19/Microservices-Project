@@ -2,7 +2,6 @@ package com.quiz.quizservice.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import com.quiz.quizservice.entity.Quiz;
@@ -41,6 +40,12 @@ public class QuizServiceImpl implements QuizService {
         Quiz quiz=quizRepo.findById(id).orElseThrow(()-> new RuntimeException("Quiz Not Found"));
         quiz.setQuestions(questionClient.getQuestionQuiz(quiz.getId()));
         return quiz;
+    }
+
+    @Override
+    public List<Quiz> getQuizList() {
+       List<Quiz>quizs=quizRepo.findAll();
+       return quizs;
     }
     
 }
