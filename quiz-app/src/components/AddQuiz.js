@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios'
-
 
 export default function AddQuiz() {
-  const baseUrl="http://localhost:8083/quiz";
-  const conn=axios.create({
-    baseURL:baseUrl,
-    headers: {
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      }
-    });
+  const baseUrl="http://localhost:8081/quiz";
+  
     const postData = async (url = '', data = {}) => {
       try {
           const response = await fetch(url, {
@@ -26,7 +18,7 @@ export default function AddQuiz() {
           if (!response.ok) {
               throw new Error('Network response was not ok');
           }
-  
+          
           return await response.json(); // Parse response JSON
       } catch (error) {
           console.error('Error:', error);
@@ -64,11 +56,11 @@ export default function AddQuiz() {
     // }
   };
  return (
-    <div className='shadow p-3 mb-5 bg-body-tertiary rounded my-3 mx-5' style={{width:"600px",height:"250px"}} >
+    <div className='position-absolute top-0 start-50 translate-middle-x shadow p-3 mb-5 bg-body-tertiary rounded my-3 mx-5' style={{width:"600px",height:"250px"}} >
       <h2 className='display-6'>Add Quiz</h2><hr/>
-      <div className="form-floating mb-3">
-      <input type="text" name='title' class="form-control" id="title" onChange={e=>setQuiz(e.target.value)} value={quiz}/>
-      <label htmlFor="floatingInput">Quiz Name</label>
+      <div className="mb-3">
+      <input type="text" name='title' placeholder='type Quiz here' class="form-control" id="title" onChange={e=>setQuiz(e.target.value)} value={quiz}/>
+      
     </div>
     <button type="button" class="btn btn-primary ps-4 pe-4" onClick={handleClick}>Add</button>
 

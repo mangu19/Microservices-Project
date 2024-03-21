@@ -5,8 +5,8 @@ export default function AddQuestion() {
     const [que, setQue] = useState([])
     const [allQuiz, setAllQuiz] = useState([])
     const [selectedQuiz, setSelectedQuiz] = useState('');
-    const baseUrl = "http://localhost:8083/quiz/quizList";
-
+    const baseUrl = "http://localhost:8081/quiz/quizList";
+    const postUrl = "http://localhost:8082/question";
     useEffect(() => {
         fetchQuizList()
     }, [])
@@ -16,15 +16,51 @@ export default function AddQuestion() {
         axios.get(baseUrl)
             .then(function (response) {
                 setAllQuiz(response.data)
-            }
-
-            )
+            })
             .catch(function (error) {
                 console.log("Error=" + error);
             })
 
     }
+
+    const postData = async (url = '', data = {}) => {
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                mode: 'cors', // Enable CORS
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*"
+                },
+                body: JSON.stringify(data)
+            });
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            return await response.json(); // Parse response JSON
+        } catch (error) {
+            console.error('Error:', error);
+            throw error; // Propagate the error
+        }
+    };
+
     const handleClick = (e) => {
+        //setSelectedQuiz(e.target.value);
+        setQue(e.target.value);
+
+        postData(postUrl, { "question": que,"quizId": selectedQuiz })
+        .then(data => {
+            console.log('Success:', data);
+            setQue("");
+            // Handle successful response
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle error
+        });
+
         
     }
     const handleSelect = (e) => {
@@ -35,9 +71,9 @@ export default function AddQuestion() {
     return (
         <div className='shadow p-3 mb-5 bg-body-tertiary rounded my-3 mx-3' style={{ width: "600px", height: "250px" }} >
             <h2 className='display-6'>Add Question</h2><hr />
-            <div className="form-floating mb-3">
-                <input type="text" name='title' class="form-control" id="title" onChange={e => setQue(e.target.value)} value={que} />
-                <label htmlFor="floatingInput">Question</label>
+            <div className="mb-3">
+                <input type="text" name='title' placeholder='type Question here' class="form-control" id="title" onChange={e => setQue(e.target.value)} value={que} />
+                
             </div>
             <div class="row">
                 <div class="col">
