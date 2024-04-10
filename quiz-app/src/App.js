@@ -1,6 +1,7 @@
 import './App.css';
 import AddQuestion from './components/AddQuestion';
 import AddQuiz from './components/AddQuiz';
+import Alert from './components/Alert';
 import AllQuizList from './components/AllQuizList';
 import Navbar from './components/Navbar';
 import {
@@ -12,9 +13,10 @@ import {
 
 function App() {
   return (
-    <div className='text-center'>
+    <div className=''>
       <BrowserRouter>     
-         <Navbar title="Quiz" />
+         <Navbar title={{title:'Quiz'}} />
+         <Alert alert={{title:'This Alert'}} />
       {/* <div class="row">
         <div class="col">
           <AddQuiz />

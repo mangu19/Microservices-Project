@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import Navbar from './Navbar';
 
 export default function AddQuiz() {
   const baseUrl="http://localhost:8081/quiz";
-  
+  Navbar.apply('')
     const postData = async (url = '', data = {}) => {
       try {
           const response = await fetch(url, {
@@ -56,7 +57,7 @@ export default function AddQuiz() {
     // }
   };
  return (
-    <div className='position-absolute top-0 start-50 translate-middle-x shadow p-3 mb-5 bg-body-tertiary rounded my-3 mx-5' style={{width:"600px",height:"250px"}} >
+    <div className='text-center position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body-tertiary rounded my-3 mx-3' style={{width:"600px",height:"250px"}} >
       <h2 className='display-6'>Add Quiz</h2><hr/>
       <div className="mb-3">
       <input type="text" name='title' placeholder='type Quiz here' class="form-control" id="title" onChange={e=>setQuiz(e.target.value)} value={quiz}/>

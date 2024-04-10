@@ -29,22 +29,25 @@ export default function AllQuizList() {
 
     return (
         <>
-             <div className='container' style={{ display: 'flex', flexWrap: 'wrap' }}>
+             <div className='container ' style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {allQuiz.map((quiz, key) => {
                     return (
-                        <div className="card-container" key={key} style={{ margin: '10px' }}>
-                            <div className="card my-3" style={{ width: "18rem" }}>
+                        <div className="card-container " key={key} style={{ margin: '10px' }}>
+                            <div className="card my-3 shadow-sm bg-body-tertiary rounded" style={{ width: "18rem" }}>
                                  <div class="card-header">
                                  {quiz.title}
                                 </div>
-                                <div className="card-body overflow-y-auto" style={{maxHeight:'200px'}}>
+                                <div className="card-body overflow-y-auto" style={{maxHeight:'200px',height:'200px'}}>
                                   
                                     <h6 className="card-subtitle text-body-secondary">Questions</h6><hr style={{marginBottom:'3px'}}/>
-                                    {quiz.questions.map((question, key1) => {
+                                    <ul class="list-group list-group-flush">
+                                        {quiz.questions.map((question, key1) => {
                                         return (
-                                            <p className="card-text" key={key1}>{question.question}</p>
+                                            <li className="list-group-item" key={key1}>{question.question}</li>
                                         )
                                     })}
+                                    </ul>
+
                                 </div>
                             </div>
                         </div>

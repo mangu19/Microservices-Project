@@ -69,7 +69,7 @@ export default function AddQuestion() {
     }
 
     return (
-        <div className='shadow p-3 mb-5 bg-body-tertiary rounded my-3 mx-3' style={{ width: "600px", height: "250px" }} >
+        <div className='position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body-tertiary rounded my-3 mx-3' style={{ width: "600px", height: "250px" }} >
             <h2 className='display-6'>Add Question</h2><hr />
             <div className="mb-3">
                 <input type="text" name='title' placeholder='type Question here' class="form-control" id="title" onChange={e => setQue(e.target.value)} value={que} />
